@@ -21,10 +21,12 @@
 				console.log('我说话了',this);
 			}
 			static info = '我是一些信息'
+			a = 1 //词句代码含义是？给Person的实例对象追加一个a属性，值为1
 		}
-
+		
 		const p = new Person('abc',18)
 		p.speak()
+		console.log(p.a);
 		/* class Student extends Person{
 			//如果A类继承了B类，且A类中写了构造器，那么A类构造器中必须调super()
 			constructor(name,age,sex){
@@ -38,15 +40,15 @@
 		} */
 
 		//有时候会这样写
-	/* 	class Student extends Person{
-			constructor(...args){
-				super(...args)
+		/* 
+			class Student extends Person{
+				constructor(...args){
+					super(...args)
+				}
 			}
-		}
-		const s = new Student('qiaozhi',20)
-		console.log(s); */
-
-
+			const s = new Student('qiaozhi',20)
+			console.log(s); 
+		*/
 	</script>
 </body>
 </html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>state</title>
+</head>
+<body>
+	<div id="test"></div>
+	<div id="test2"></div>
+	<!-- 1.引入react核心库 -->
+	<script type="text/javascript" src="../js/react.development.js"></script>
+	<!-- 2.引入react-dom -->
+	<script type="text/javascript" src="../js/react-dom.development.js"></script>
+	<!-- 3.引入babel -->
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+
+	<script type="text/babel">
+		//1.定义组件
+		class Person extends React.Component{
+			render(){
+				const {name,age,sex} = this.props
+				return (
+					<div>
+						<ul>
+							<li>姓名：{name}</li>
+							<li>年龄：{age+1}</li>
+							<li>性别：{sex}</li>
+						</ul>
+						<hr/>
+					</div>
+				)
+			}
+		}
+		const p1 = {
+			name:'老刘',
+			age:18,
+			sex:"女"
+		}
+		console.log('@',...p1); //@ 
+		//2.渲染组件 react+babel可以实现用三点运算符展开一个对象,但仅限于标签传递属性。
+		ReactDOM.render(<Person {...p1}/>,document.getElementById('test'))
+		//ReactDOM.render(<Person name={p1.name} age={p1.age} sex={p1.sex}/>,document.getElementById('test'))
+		ReactDOM.render(<Person name="jerry" age="20" sex="女"/>,document.getElementById('test2'))
+	</script>
+</body>
+</html>

@@ -20,10 +20,10 @@
 			constructor(...args){
 				super(...args)
 				this.state = {isHot:false} //初始化状态
-				this.a = this.test.bind(this)//为了解决自定义方法中this是undefined
+				this.changeWeather = this.changeWeather.bind(this)//为了解决自定义方法中this是undefined
 			}
 			//所有程序员自定义的一般方法中，this永远是undefined
-			test() {
+			changeWeather() {
 				console.log(this);
 				//状态不可以直接更改，如下代码就是直接更改
 				//this.state.isHot = false
@@ -36,13 +36,11 @@
 				//render调用几次？1+n次，1是初始化的时候，n是状态改变次数。
 				console.log('render---@');
 				// console.log(this);
-				return <h1 onClick={this.a}>今天天气很{this.state.isHot ? '炎热' :"凉爽"}</h1>
+				return <h1 onClick={this.changeWeather}>今天天气很{this.state.isHot ? '炎热' :"凉爽"}</h1>
 			}
 		}
 		//渲染组件到页面
 		ReactDOM.render(<Weather/>,document.getElementById('test'))
-
-		
 	</script>
 </body>
 </html>
