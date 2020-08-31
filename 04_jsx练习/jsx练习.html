@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jsx练习</title>
+</head>
+<body>
+	<div id="test"></div>
+	<!-- 1.引入react核心库 -->
+	<script type="text/javascript" src="../js/react.development.js"></script>
+	<!-- 2.引入react-dom -->
+	<script type="text/javascript" src="../js/react-dom.development.js"></script>
+	<!-- 3.引入babel -->
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+
+	<script type="text/babel">
+	/* 
+		一定注意区分：【js语句(代码)】 与 【js表达式】
+						1.表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方
+										例如这些都是表达式：
+											a
+											a+b
+											demo(1)
+											arr.map()
+											function demo1() {}
+						2.语句(代码)：控制代码走向
+											if(){}
+											for(){}
+											switch(){case:xxx}
+	 */
+		const arr = ['Angular','React','Vue','flutter']
+		const VDOM = (
+			<div>
+				<h1>前端技术列表</h1>
+				<ul>
+					{
+						//把数据的数组，变成一个标签的数组。
+						//此处使用idnex做为key没问题，但有时候会有bug，后期仔细讲解。
+						arr.map((item,index) => <li key={index}>{item}</li>)
+					}
+				</ul>
+			</div>
+		)
+		ReactDOM.render(VDOM,document.getElementById('test'))
+	</script>
+</body>
+</html>
