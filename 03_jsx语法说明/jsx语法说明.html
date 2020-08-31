@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jsx语法说明</title>
+	<style>
+		.title{
+			color:orange
+		}
+	</style>
+</head>
+<body>
+	<div id="test"></div>
+	<!-- 1.引入react核心库 -->
+	<script type="text/javascript" src="../js/react.development.js"></script>
+	<!-- 2.引入react-dom -->
+	<script type="text/javascript" src="../js/react-dom.development.js"></script>
+	<!-- 3.引入babel -->
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+
+	<script type="text/babel">
+		const myId = 'AtGuigu'
+		const myData = 'hELlO,WoRld'
+		//1.创建虚拟DOM
+		const VDOM = (
+			<div>
+				<h2 style={{backgroundColor:'gray'}} id={myId.toUpperCase()}>
+					<span className="title">{myData.toUpperCase()}</span>
+				</h2>
+				<h2 style={{backgroundColor:'gray'}} id={myId.toUpperCase()}>
+					<span className="title">{myData.toUpperCase()}</span>
+				</h2>
+				<input type="text"/>
+			</div>
+		)
+		//2.渲染虚拟DOM到页面
+		ReactDOM.render(VDOM,document.getElementById('test'))
+
+		/* 
+			关于jsx语法：
+					1.不要写引号，因为不是字符串。
+					2.标签中如果想写js表达式，要用{}。
+					3.指定样式类名不要用class，要用className
+					4.style要写成：style={{}}
+					5.必须只有一个根标签
+					6.所有标签必须闭合
+					7.标签首字母： 
+							1.若小写：(<h1>)
+									触发react去和html内置标签去对应，若对应上则渲染，若没有，报错。
+							2.若大写：(<Haha>)
+									触发react去查找Haha组件
+					8.备注：遇到<以标签语法解析，遇到{以js表达式解析。
+		 */
+
+	</script>
+	
+	
+</body>
+</html>

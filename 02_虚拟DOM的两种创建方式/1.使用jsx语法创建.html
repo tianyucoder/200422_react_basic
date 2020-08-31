@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>使用jsx创建虚拟DOM</title>
+</head>
+<body>
+	<div id="test1"></div>
+	<!-- 1.引入react核心库 -->
+	<script type="text/javascript" src="../js/react.development.js"></script>
+	<!-- 2.引入react-dom -->
+	<script type="text/javascript" src="../js/react-dom.development.js"></script>
+	<!-- 3.引入babel -->
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+
+	<script type="text/babel" >
+		const myId = 'AtGUigu'
+		const myData = 'HElLo,WOrld'
+		//1.创建虚拟DOM
+		const VDOM = (
+			<h2 id={myId.toLowerCase()}>
+					<span>{myData.toLowerCase()}</span>
+			</h2>
+		)
+					
+		//2.渲染虚拟DOM到页面
+		ReactDOM.render(VDOM,document.getElementById('test1'))
+
+		const test1 = document.getElementById('test1')
+		console.log(VDOM); //输出一个虚拟DOM
+		console.log(test1) //输出一个真实DOM
+		debugger;
+
+		/* 
+				关于虚拟DOM你要知道的2点：
+						1.虚拟DOM到底是什么？（它是js中的什么类型？）
+								Object对象
+						2.它和真实DOM有什么区别？
+								虚拟DOM“轻”，真实DOM“重”--因为虚拟DOM是react在用，无需真实DOM身上那么多的属性。
+								虚拟DOM迟早会被转为真实DOM
+
+				关创建虚拟DOM你要知道的：
+						1.开发中一定使用jsx创建虚拟DOM
+						2.也可以说jsx创建虚拟DOM的语法，是原生js创建虚拟DOM的一个语法糖。
+		 */
+	</script>
+	
+	
+</body>
+</html>
