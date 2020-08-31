@@ -16,10 +16,11 @@
 	<script type="text/babel">
 		//定义组件
 		class Weather extends React.Component{
+			//构造器
 			constructor(...args){
 				super(...args)
 				this.state = {isHot:false} //初始化状态
-				this.a = this.test.bind(this)
+				this.a = this.test.bind(this)//为了解决自定义方法中this是undefined
 			}
 			//所有程序员自定义的一般方法中，this永远是undefined
 			test() {
@@ -27,10 +28,12 @@
 				//状态不可以直接更改，如下代码就是直接更改
 				//this.state.isHot = false
 				const {isHot} = this.state
+				//要用指定的方法更改状态，代码如下：
 				this.setState({isHot:!isHot})
 			}
 			//render是react众多生命周期函数中的一个，所以它的this指向没问题
 			render(){
+				//render调用几次？1+n次，1是初始化的时候，n是状态改变次数。
 				console.log('render---@');
 				// console.log(this);
 				return <h1 onClick={this.a}>今天天气很{this.state.isHot ? '炎热' :"凉爽"}</h1>
