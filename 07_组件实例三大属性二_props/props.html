@@ -37,7 +37,7 @@
 			sex:"女"
 		}
 		console.log('@',...p1); //@ 
-		//2.渲染组件 react+babel可以实现用三点运算符展开一个对象,但仅限于标签传递属性。
+		//2.渲染组件 react+babel可以实现用三点运算符展开一个对象,但仅限于组件标签传递属性。
 		ReactDOM.render(<Person {...p1}/>,document.getElementById('test'))
 		//ReactDOM.render(<Person name={p1.name} age={p1.age} sex={p1.sex}/>,document.getElementById('test'))
 		ReactDOM.render(<Person name="jerry" age="20" sex="女"/>,document.getElementById('test2'))
