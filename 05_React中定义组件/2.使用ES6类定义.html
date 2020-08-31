@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>使用函数定义组件</title>
+	<title>使用类定义组件</title>
 </head>
 <body>
 	<div id="test"></div>
@@ -15,18 +14,23 @@
 	<script type="text/javascript" src="../js/babel.min.js"></script>
 
 	<script type="text/babel" >
-		//1.定义一个组件---开头字母大写
-		function MyComponent(){
-			console.log(this); //注意！此处的this是undefined，因为babel翻译后开启了严格模式导致的。
-			return <h1>我是用函数定义的组件（适用于【简单组件】的定义）</h1>
-		}	
+		//1.定义组件---使用类去定义
+		class Demo extends React.Component{
+			//1.render放在哪了？ ------ Demo的原型对象上
+			//2.render给谁调用的？------ Demo的实例对象、Demo组件实例对象
+			render(){
+				console.log(this);
+				return <h1>我是用类定义的组件（适用于【复杂组件】的定义）</h1>
+			}
+		}
 		//2.渲染组件到页面
-		ReactDOM.render(<MyComponent/>,document.getElementById('test'))
+		ReactDOM.render(<Demo/>,document.getElementById('test'))
 		/* 
 				当执行了ReactDOM.render后发生了什么？
 						1.react发现，你渲染的是一个标签，且标签首字母大写，react随后去查找组件定义的位置。
-						2.react发现，组件是用函数定义的，react调用该函数，获取到返回值
-						3.将返回值(虚拟DOM)渲染到页面
+						2.react发现，组件是用类定义的，react创建了该类的实例对象。
+						3.通过实例对象调用到了render，获取到了返回值。
+						4.将返回值(虚拟DOM)渲染到页面。
 		*/
 	</script>
 </body>

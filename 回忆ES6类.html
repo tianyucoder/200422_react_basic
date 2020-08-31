@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>回忆ES6类</title>
+</head>
+<body>
+	<script type="text/javascript" >
+
+		class Person {
+			//构造器----为什么要写构造器？---要接住new时候传入的参数
+			//必须写吗？----不是必须写，一般来说，要给实例自身上加属性时写
+			constructor(name,age){
+				//构造器中this是该类的实例对象
+				this.name = name
+				this.age = age
+			}
+			//一般方法--speak放在Person的原型对象上，给实例用
+			speak(){
+				console.log('我说话了');
+			}
+			static info = '我是一些信息'
+		}
+		
+		/* class Student extends Person{
+			//如果A类继承了B类，且A类中写了构造器，那么A类构造器中必须调super()
+			constructor(name,age,sex){
+				super(name,age)
+				this.sex = sex
+			}
+			//重写从父类继承过来的方法
+			speak(){
+				console.log('我说话了--Student');
+			}
+		} */
+
+		//有时候会这样写
+		class Student extends Person{
+			constructor(...args){
+				super(...args)
+			}
+		}
+		const s = new Student('qiaozhi',20)
+		console.log(s);
+
+
+	</script>
+</body>
+</html>
