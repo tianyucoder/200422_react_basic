@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" >
+			let m = {a:0,b:1}
+			let n = {c:2,d:3}
+			let obj = {}
+
+			// obj.m = 1
+			// obj.n = 2
+			// console.log(obj); //{m:1,n:2}
+
+			// obj[m] = 1
+			// obj[n] = 2
+			// console.log(obj['1,3,5,7,9']);
+
+			obj[m] = 'atguigu' // =====> obj['[object Object]'] = atguigu
+			console.log(obj);
+			obj[n] = '0422' // =====> obj['[object Object]'] = 0422
+			// console.log(obj[m]);  //obj['[object Object]'] 0422
+			// console.log(obj[n]);  //obj['[object Object]'] 0422
+
+			//关于对象调toString：
+			// const d1 = {a:0,b:1}
+			// const d2 = {aa:2,bb:3}
+			// const d3 = {aaa:4,bbb:5}
+			// console.log(d1.toString());
+			// console.log(d2.toString());
+			// console.log(d3.toString());
+
+			//关于数组调toString：
+			// let arr1 = [1,3,5,7,9]
+			// let arr2 = [2,4,6,8,10]
+			// console.log(arr1.toString());
+			// console.log(arr2.toString());
+
+			//不应用柯里化
+			function sum(a,b,c){
+				return a+b+c
+			}
+			console.log(sum(1,2,3));
+
+			//应用柯里化
+			function sum2(a){
+				return (b)=>{
+					return (c)=>{
+						return a+b+c
+					}
+				}
+			}
+			console.log(sum2(1)(2)(3));
+
+
+	</script>
+</body>
+</html>

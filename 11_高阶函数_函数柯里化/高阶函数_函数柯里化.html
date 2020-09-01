@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>refs</title>
+</head>
+<body>
+	<div id="test"></div>
+	<!-- 1.引入react核心库 -->
+	<script type="text/javascript" src="../js/react.development.js"></script>
+	<!-- 2.引入react-dom -->
+	<script type="text/javascript" src="../js/react-dom.development.js"></script>
+	<!-- 3.引入babel -->
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+
+	<script type="text/babel">
+	/* 
+			高阶函数：符合下列条件中的任何一个，就可以成为高阶函数
+					1.若A函数，接收一个函数作为参数，那么A函数就可以称为高阶函数
+							例如：Promise、setTimeOut、map、filter、redux中的connect函数
+					2.若A函数，可以返回一个函数，那么A函数就可以称为高阶函数
+							例如：bind
+
+			函数柯里化：通过函数调用继续返回函数，达到多次传参，最后统一处理的编码方式
+
+
+	*/
+
+	
+
+		class Login extends React.Component{
+
+			state = {
+				username:'',
+				password:''
+			}
+
+			//表单提交的回调
+			handleSubmit = (event)=>{
+				event.preventDefault()
+				const {username,password} = this.state
+				alert(`${username},${password}`)
+			}
+
+			//保存用户的输入----符合：高阶函数、函数柯里化
+			saveData = (dataType)=>{
+				// console.log(key);
+				return (event)=>{
+					this.setState({[dataType]:event.target.value})
+				}
+			}
+
+			//保存用户的输入---不用高阶函数、不应用柯里化
+			/* saveData = (dataType,event)=>{
+				// console.log(key);
+					this.setState({[dataType]:event.target.value})
+				}
+			} 
+			 
+				用户名：<input onChange={(event)=>{this.saveData('username',event)}}/>
+				密码：<input onChange={(event)=>{this.saveData('password',event)}} type="password"/>
+			*/
+
+			render(){
+				return (
+					<form onSubmit={this.handleSubmit}>
+						用户名：<input onChange={this.saveData('username')}/>
+						密码：<input onChange={this.saveData('password')} type="password"/>
+						<input type="submit" value="登录"/>
+					</form>
+				)
+			}
+		}
+		//渲染组件
+		ReactDOM.render(<Login/>,document.getElementById('test'))
+	</script>
+</body>
+</html>

@@ -22,7 +22,7 @@
 				password:''
 			}
 
-			//非受控组件：组件中所有输入类DOM，在使用其值的时候，通过ref现用现取
+			//受控组件：组件中所有输入类DOM，随着输入维护到状态中，需要的时候从状态中取出。
 
 			handleSubmit = (event)=>{
 				event.preventDefault()
@@ -38,7 +38,7 @@
 				// const {value:password} = event.target
 				this.setState({password:event.target.value})
 			}
-			
+
 			render(){
 				return (
 					<form onSubmit={this.handleSubmit}>
