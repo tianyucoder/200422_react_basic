@@ -22,8 +22,13 @@
 							例如：bind
 
 			函数柯里化：通过函数调用继续返回函数，达到多次传参，最后统一处理的编码方式
-
-
+						function sum2(a){
+							return (b)=>{
+								return (c)=>{
+									return a+b+c
+								}
+							}
+						}
 	*/
 
 	

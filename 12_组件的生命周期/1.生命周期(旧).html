@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>生命周期(旧)</title>
+</head>
+<body>
+	<div id="test"></div>
+	<!-- 引入react核心库 -->
+	<script type="text/javascript" src="../js/react.development.js"></script>
+	<!-- 引入react-dom -->
+	<script type="text/javascript" src="../js/react-dom.development.js"></script>
+	<!-- 引入babel -->
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+
+	<script type="text/babel">
+		class Count extends React.Component{
+
+			constructor(...args){
+				console.log('---constructor---');
+				super(...args)
+				this.state = {count:0}
+			}
+
+			add = ()=>{
+				const {count} = this.state
+				this.setState({count:count+1})
+			}
+
+			componentWillMount(){
+				console.log('---componentWillmount---');
+			}
+
+			componentDidMount(){
+				console.log('---componentDidMount---');
+			}
+
+			shouldComponentUpdate(){
+				console.log('---shouldComponentUpdate---');
+				return true
+			}
+
+			componentWillUpdate(){
+				console.log('---componentWillUpdate---');
+			}
+
+			componentDidUpdate(){
+				console.log('---componentDidUpdate---');
+			}
+
+			force = ()=>{
+				this.forceUpdate()
+			}
+
+			render(){
+				console.log('---render---');
+				return(
+					<div>
+						<h1>当前求和为:{this.state.count}</h1>
+						<button onClick={this.add}>点我+1</button>
+						<button onClick={this.force}>强制更新一下</button>
+					</div>
+				)
+			}
+		}
+		ReactDOM.render(<Count/>,document.getElementById('test'))
+	</script>
+
+</body>
+</html>
