@@ -15,12 +15,27 @@
 	<script type="text/javascript" src="../js/babel.min.js"></script>
 
 	<script type="text/babel">
+	/* 
+			生命周期的三个阶段（旧）
+					1.初始化阶段: 由ReactDOM.render()触发---初次渲染
+							* constructor()
+							* componentWillMount()
+							* render()
+							* componentDidMount()
+					2.更新阶段: 由组件内部this.setSate()或父组件重新render触发
+							* shouldComponentUpdate()
+							* componentWillUpdate()
+							* render()
+							* componentDidUpdate()
+					3.卸载组件: 由ReactDOM.unmountComponentAtNode(containerDOM)或隐藏子组件触
+							* componentWillUnmount()
+	*/
 		class Count extends React.Component{
 			//构造器
 			constructor(...args){
-				console.log('---constructor---');
+				// console.log('---constructor---');
 				super(...args)
-				this.state = {count:0}
+				this.state = {count:0,carName:'阿特兹'}
 			}
 
 			//加1
@@ -32,6 +47,10 @@
 			//强制更新
 			force = ()=>{
 				this.forceUpdate()
+			}
+
+			changeCarName = ()=>{
+				this.setState({carName:'奔驰c63'})
 			}
 
 			//组件将要挂载
@@ -47,7 +66,8 @@
 			//控制组件是否可以更新
 			shouldComponentUpdate(){
 				console.log('---shouldComponentUpdate---');
-				return true
+				console.log(this.state.count);
+				return false
 			}
 
 			//组件将要更新
@@ -61,16 +81,29 @@
 			}
 
 			render(){
-				console.log('---render---');
+				// console.log('---render---');
 				return(
 					<div>
 						<h1>当前求和为:{this.state.count}</h1>
 						<button onClick={this.add}>点我+1</button>
 						<button onClick={this.force}>强制更新一下</button>
+						<Car carName={this.state.carName}/>
+						<button onClick={this.changeCarName}>换车</button>
 					</div>
 				)
 			}
 		}
+		
+		class Car extends React.Component{
+			componentWillReceiveProps(){
+				console.log('---componentWillReceviceProps---');
+			}
+			render(){
+				const {carName} = this.props
+				return <h1>汽车的名字是:{carName}</h1>
+			}
+		}
+
 		ReactDOM.render(<Count/>,document.getElementById('test'))
 	</script>
 
