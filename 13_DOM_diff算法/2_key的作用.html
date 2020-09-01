@@ -46,7 +46,38 @@
 								1.最好使用每条数据的唯一标识作为key, 比如id、手机号、身份证号、学号等唯一值。
 								2.如果确定只是简单的展示数据，用index也是可以的。
    */
-	
+	class PersonList extends React.Component{
+		state = {
+			persons:[
+				{id:1,name:'小张',age:18},
+				{id:2,name:'小李',age:19},
+			]
+		}
+
+		addWang = ()=>{
+			const id = this.state.persons.length + 1
+			const wang = {id,name:'小王',age:20}
+			const {persons} = this.state
+			this.setState({persons:[wang,...persons]})
+		}
+
+		render(){
+			return (
+				<div>
+						<h1>展示人员列表</h1>
+						<button onClick={this.addWang}>添加一个小王</button>
+						<ul>
+							{
+								this.state.persons.map((p)=>{
+									return <li key={p.id}>{p.name}---{p.age}<input/></li>
+								})
+							}
+						</ul>
+				</div>
+			)
+		}
+	}
+	ReactDOM.render(<PersonList/>,document.getElementById('test'))
 </script>
 </body>
 </html>

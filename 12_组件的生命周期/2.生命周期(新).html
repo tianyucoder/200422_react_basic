@@ -15,6 +15,23 @@
 	<script type="text/javascript" src="../js/babel.min.js"></script>
 
 	<script type="text/babel">
+	/* 
+		1.初始化阶段:  由ReactDOM.render()触发
+					* constructor()
+					* getDerivedStateFromProps() 
+					* render()
+					* componentDidMount()
+		2.更新阶段 由组件内部this.setSate()或父组件重新render触发
+					* getDerivedStateFromProps()
+					* shouldComponentUpdate()
+					* render()
+					* getSnapshotBeforeUpdate()
+					* componentDidUpdate()
+		3.移除组件: 由ReactDOM.unmountComponentAtNode(containerDom)触发
+					* componentWillUnmount()
+
+	
+	*/
 		class Count extends React.Component{
 			//构造器
 			constructor(...args){
@@ -29,9 +46,21 @@
 				this.setState({count:count+1})
 			}
 
-			static getDerivedStateFromProps(props){
+			/* static getDerivedStateFromProps(props){
 				console.log('---getDerivedStateFromProps---');
 				return {count:props.number}
+			} */
+
+			getSnapshotBeforeUpdate(preProps,preState){
+				console.log(preProps,preState);
+				console.log('---getSnapShotBeforeUpdate---');
+				return '0422'
+			}
+
+			//组件完成更新
+			componentDidUpdate(props,preState,data){
+				console.log('%',props,preState,data);
+				console.log('---componentDidUpdate---');
 			}
 			
 			//组件将要挂载
@@ -54,11 +83,6 @@
 			/* UNSAFE_componentWillUpdate(){
 				console.log('---componentWillUpdate---');
 			} */
-
-			//组件完成更新
-			componentDidUpdate(){
-				console.log('---componentDidUpdate---');
-			}
 
 			render(){
 				console.log('---render---');
