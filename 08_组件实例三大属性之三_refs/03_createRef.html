@@ -17,19 +17,23 @@
 		//定义组件
 		class Demo extends React.Component{
 
+			input1RefCon = React.createRef() //创建一个容器，存储被ref所标识的节点(专人专用)
+			input2RefCon = React.createRef() //创建一个容器，存储被ref所标识的节点(专人专用)
+
 			showInfo = ()=>{
-				// alert(this.refs.input1.value)
-				//连续解构赋值+重命名
-				const {input1:{value:data}} = this.refs
-				alert(data)
+				alert(this.input1RefCon.current.value);
+			}
+
+			blurShow = ()=>{
+				alert(this.input2RefCon.current.value);
 			}
 
 			render(){
 				return (
 					<div>
-						<input  ref="input1" type="text" placeholder="点击按钮提示"/>
+						<input ref={this.input1RefCon} type="text" placeholder="点击按钮提示"/>
 						<button onClick={this.showInfo}>点我提示数据</button>
-						<input type="text" placeholder="失去焦点提示"/>
+						<input ref={this.input2RefCon} onBlur={this.blurShow} type="text" placeholder="失去焦点提示"/>
 					</div>
 				)
 			}
