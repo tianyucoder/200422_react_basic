@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>state</title>
+	<title>props</title>
 </head>
 <body>
 	<div id="test"></div>
@@ -13,10 +13,22 @@
 	<script type="text/javascript" src="../js/react-dom.development.js"></script>
 	<!-- 3.引入babel -->
 	<script type="text/javascript" src="../js/babel.min.js"></script>
+	<!-- 4.引入prop-types -->
+	<script type="text/javascript" src="../js/prop-types.js"></script>
 
 	<script type="text/babel">
-		//1.定义组件
+		//定义组件
 		class Person extends React.Component{
+			//对Person接收标签属性进行类型和必要性的限制
+			static propTypes = {
+				name:PropTypes.string.isRequired,
+				age:PropTypes.number,
+				sex:PropTypes.string,
+			}
+			static defaultProps = {
+				age:30,
+				sex:'不男不女'
+			}
 			render(){
 				const {name,age,sex} = this.props
 				return (
@@ -31,16 +43,18 @@
 				)
 			}
 		}
+
+		//准备一个人的数据
 		const p1 = {
 			name:'老刘',
 			age:18,
-			sex:"女"
 		}
-		console.log('@',...p1); //@ 
-		//2.渲染组件 react+babel可以实现用三点运算符展开一个对象,但仅限于组件标签传递属性。
+		
+		//渲染组件 react+babel可以实现用三点运算符展开一个对象,但仅限于组件标签传递属性。
 		ReactDOM.render(<Person {...p1}/>,document.getElementById('test'))
 		//ReactDOM.render(<Person name={p1.name} age={p1.age} sex={p1.sex}/>,document.getElementById('test'))
-		ReactDOM.render(<Person name="jerry" age="20" sex="女"/>,document.getElementById('test2'))
+
+		ReactDOM.render(<Person name="jerry" age={20} sex="女"/>,document.getElementById('test2'))
 	</script>
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>refs</title>
+</head>
+<body>
+	<div id="test"></div>
+	<!-- 1.引入react核心库 -->
+	<script type="text/javascript" src="../js/react.development.js"></script>
+	<!-- 2.引入react-dom -->
+	<script type="text/javascript" src="../js/react-dom.development.js"></script>
+	<!-- 3.引入babel -->
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+
+	<script type="text/babel">
+		//定义组件
+		class Demo extends React.Component{
+
+			showInfo = ()=>{
+				// alert(this.refs.input1.value)
+				//连续解构赋值+重命名
+				const {input1:{value:data}} = this.refs
+				alert(data)
+			}
+
+			render(){
+				return (
+					<div>
+						<input  ref="input1" type="text" placeholder="点击按钮提示"/>
+						<button onClick={this.showInfo}>点我提示数据</button>
+						<input type="text" placeholder="失去焦点提示"/>
+					</div>
+				)
+			}
+		}
+		ReactDOM.render(<Demo/>,document.getElementById('test'))
+	</script>
+
+</body>
+</html>
