@@ -16,41 +16,48 @@
 
 	<script type="text/babel">
 		class Count extends React.Component{
-
+			//构造器
 			constructor(...args){
 				console.log('---constructor---');
 				super(...args)
 				this.state = {count:0}
 			}
 
+			//加1
 			add = ()=>{
 				const {count} = this.state
 				this.setState({count:count+1})
 			}
 
+			//强制更新
+			force = ()=>{
+				this.forceUpdate()
+			}
+
+			//组件将要挂载
 			componentWillMount(){
 				console.log('---componentWillmount---');
 			}
 
+			//组件挂载完毕
 			componentDidMount(){
 				console.log('---componentDidMount---');
 			}
 
+			//控制组件是否可以更新
 			shouldComponentUpdate(){
 				console.log('---shouldComponentUpdate---');
 				return true
 			}
 
+			//组件将要更新
 			componentWillUpdate(){
 				console.log('---componentWillUpdate---');
 			}
 
+			//组件完成更新
 			componentDidUpdate(){
 				console.log('---componentDidUpdate---');
-			}
-
-			force = ()=>{
-				this.forceUpdate()
 			}
 
 			render(){
