@@ -46,6 +46,44 @@
 								1.最好使用每条数据的唯一标识作为key, 比如id、手机号、身份证号、学号等唯一值。
 								2.如果确定只是简单的展示数据，用index也是可以的。
    */
+	 /* 
+			慢动作回放：
+					一、使用index作为key
+								初始的状态状态数据：
+										{id:1,name:'小张',age:18},
+										{id:2,name:'小李',age:19},
+								第一次的虚拟DOM：
+										<li key=0>小张---18<input/></li>
+										<li key=1>小李---19<input/></li>
+
+						点击了添加小王后：
+								新的状态数据：
+										{id:3,name:'小王',age:18},
+										{id:1,name:'小张',age:18},
+										{id:2,name:'小李',age:19},
+								新的虚拟DOM：
+										<li key=0>小王---20<input/></li>
+										<li key=1>小张---18<input/></li>
+										<li key=2>小李---19<input/></li>
+
+					二、使用id作为key
+					初始的状态状态数据：
+										{id:1,name:'小张',age:18},
+										{id:2,name:'小李',age:19},
+								第一次的虚拟DOM：
+										<li key=1>小张---18<input/></li>
+										<li key=2>小李---19<input/></li>
+
+						点击了添加小王后：
+								新的状态数据：
+										{id:3,name:'小王',age:18},
+										{id:1,name:'小张',age:18},
+										{id:2,name:'小李',age:19},
+								新的虚拟DOM：
+										<li key=3>小王---20<input/></li>
+										<li key=1>小张---18<input/></li>
+										<li key=2>小李---19<input/></li>
+	  */
 	class PersonList extends React.Component{
 		state = {
 			persons:[
@@ -64,7 +102,18 @@
 		render(){
 			return (
 				<div>
-						<h1>展示人员列表</h1>
+						<h1>展示人员列表(使用index作为key)</h1>
+						<button onClick={this.addWang}>添加一个小王</button>
+						<ul>
+							{
+								this.state.persons.map((p,index)=>{
+									return <li key={index}>{p.name}---{p.age}<input/></li>
+								})
+							}
+						</ul>
+						<br/>
+						<hr/>
+						<h1>展示人员列表(使用id作为key)</h1>
 						<button onClick={this.addWang}>添加一个小王</button>
 						<ul>
 							{
